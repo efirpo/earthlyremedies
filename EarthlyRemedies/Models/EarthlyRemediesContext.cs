@@ -30,9 +30,9 @@ namespace EarthlyRemedies.Models
 
       builder.Entity<Rating>()
       .HasData(
-        new Rating { RatingId = 1, Stars = 5, RemedyId = 2 },
-        new Rating { RatingId = 2, Stars = 3, RemedyId = 2 },
-        new Rating { RatingId = 3, Stars = 1, RemedyId = 2 }
+        new Rating { RatingId = 1, Stars = 5, RemedyId = 2, UserId = 2, Comments = "Almost killed me!" },
+        new Rating { RatingId = 2, Stars = 3, RemedyId = 2, UserId = 1, Comments = "Not sure it did anything." },
+        new Rating { RatingId = 3, Stars = 1, RemedyId = 2, UserId = 3, Comments = "Best ever!!!" }
       );
     }
 

@@ -22,6 +22,7 @@ namespace EarthlyRemedies.Models
 
     public int UserId { get; set; }
 
+
   }
 
 }

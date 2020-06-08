@@ -53,9 +53,9 @@ _Have a bug or an issue with this application? [Open a new issue] here on GitHub
 * As a user, I want to be able to look up remedies by name, details, ailment and biological system/category.
 * As a user, I want to be able to tag remedies with specific ingredients.
 * As a user, I want to see all uses for a particular ingredient.
-<!-- * As a user, I want to be able to post ratings for remedies.  
+* As a user, I want to be able to post ratings for remedies.  
 * As a user, I want to see the best Remedies by rating. 
-* As a user, I want error messages to tell me what I did wrong -->
+* As a user, I want error messages to tell me what I did wrong.
 
 ### Specs
 | Spec | Input | Output |
