@@ -56,7 +56,27 @@ _Have a bug or an issue with this application? [Open a new issue] here on GitHub
 * As a user, I want to be able to post ratings for remedies.  
 * As a user, I want to see the best Remedies by rating. 
 * As a user, I want error messages to tell me what I did wrong.
+* On get request, return dictionary with key value pairs of {{"categories", List<strings>{"skin","GI","eyes","whatever"}}, {"response", List<Remedy>{}}
+* could use another model to store categories variable
 
+{
+  {"categories",
+  {
+    "skin",
+    "GI",
+    "eyes"
+  }},
+  {
+    "response",
+    {
+      {
+
+      }
+    }
+  }
+
+  }
+}
 ### Specs
 | Spec | Input | Output |
 | :------------- | :------------- | :------------- |
