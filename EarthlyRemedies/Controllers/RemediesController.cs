@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using EarthlyRemedies.Models;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace EarthlyRemedies.Controllers
 {
@@ -39,21 +41,28 @@ namespace EarthlyRemedies.Controllers
       return _db.Remedies.FirstOrDefault(entry => entry.RemedyId == id);
     }
 
-    //PUT api/remedies/#
-    [HttpPut("{id}")]
-    public void Put(int id, [FromBody] Remedy remedy)
+    //PUT api/remedies/userId/remedyId
+    [HttpPut("{userId}/{id}")]
+    public void Put(int userId, int id, [FromBody] Remedy remedy)
     {
       remedy.RemedyId = id;
-      _db.Entry(remedy).State = EntityState.Modified;
-      _db.SaveChanges();
+      if (remedy.UserId == userId)
+      {
+        _db.Entry(remedy).State = EntityState.Modified;
+        _db.SaveChanges();
+      }
     }
 
-    [HttpDelete("{id}")]
-    public void Delete(int id)
+    //http://localhost:5000/api/remedies/1/9
+    [HttpDelete("{userId}/{id}")]
+    public void Delete(int id, int userId)
     {
       var remedyToDelete = _db.Remedies.FirstOrDefault(entry => entry.RemedyId == id);
-      _db.Remedies.Remove(remedyToDelete);
-      _db.SaveChanges();
+      if (remedyToDelete.UserId == userId)
+      {
+        _db.Remedies.Remove(remedyToDelete);
+        _db.SaveChanges();
+      }
     }
 
     // GET api/Remedies

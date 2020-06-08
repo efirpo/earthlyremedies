@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace EarthlyRemedies.Models
 {
@@ -20,7 +22,6 @@ namespace EarthlyRemedies.Models
 
     public int UserId { get; set; }
 
-    // public decimal Rating { get; set; }
-    // public int UserId {get; set;}
   }
+
 }
