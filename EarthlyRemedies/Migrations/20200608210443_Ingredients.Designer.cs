@@ -2,14 +2,16 @@
 using EarthlyRemedies.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EarthlyRemedies.Migrations
 {
     [DbContext(typeof(EarthlyRemediesContext))]
-    partial class EarthlyRemediesContextModelSnapshot : ModelSnapshot
+    [Migration("20200608210443_Ingredients")]
+    partial class Ingredients
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,8 +38,6 @@ namespace EarthlyRemedies.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("UserId");
-
                     b.HasKey("RemedyId");
 
                     b.ToTable("Remedies");
@@ -50,8 +50,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "respiratory",
                             Details = "L-Acetyl Cysteine, taken daily, will shorten duration of respiratory ailments.",
                             Ingredients = "L-Acetyl Cysteine",
-                            Name = "Mucus Melter",
-                            UserId = 1
+                            Name = "Mucus Melter"
                         },
                         new
                         {
@@ -60,8 +59,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "skin",
                             Details = "Castor oil rubbed into the scalp, every night before bed, for one week.",
                             Ingredients = "castor oil",
-                            Name = "Dandruff Buster",
-                            UserId = 2
+                            Name = "Dandruff Buster"
                         },
                         new
                         {
@@ -70,8 +68,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "eyes",
                             Details = "Mega doses of Omega 3s for LIFE!!!!",
                             Ingredients = "Omega 3",
-                            Name = "Dry Eye Relief",
-                            UserId = 1
+                            Name = "Dry Eye Relief"
                         },
                         new
                         {
@@ -80,8 +77,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "skin",
                             Details = "Soak the affected area in apple cider vinegar twice a day until cured",
                             Ingredients = "apple cider vinegar",
-                            Name = "Fungus Foiler",
-                            UserId = 2
+                            Name = "Fungus Foiler"
                         },
                         new
                         {
@@ -90,8 +86,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "GI",
                             Details = "One shot of vodka, followed by one shot of fresh ginger juice, daily until symptoms resolve.",
                             Ingredients = "ginger, vodka",
-                            Name = "Polish Tummy Cure",
-                            UserId = 1
+                            Name = "Polish Tummy Cure"
                         },
                         new
                         {
@@ -100,8 +95,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "skin",
                             Details = "apply earl grey tea to the affected area 5 times a day until burn goes away",
                             Ingredients = "tea",
-                            Name = "Sunburn salve",
-                            UserId = 2
+                            Name = "Sunburn salve"
                         },
                         new
                         {
@@ -110,8 +104,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "GI",
                             Details = "Heat 4 oz water to body temperature.  Add 1 oz fresh lemon juice. Drink slowly.",
                             Ingredients = "lemon",
-                            Name = "Heartburn Helper",
-                            UserId = 1
+                            Name = "Heartburn Helper"
                         },
                         new
                         {
@@ -120,8 +113,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "respiratory",
                             Details = "Mix 2 drops eucalyptus oil, 1 drop peppermint oil, and 1 drop tea tree oil into 1 oz neutral oil or balm.  Rub on throat, chest and upper back before sleep.",
                             Ingredients = "tea tree oil, peppermint, eucalyptus",
-                            Name = "Nighttime Salve",
-                            UserId = 2
+                            Name = "Nighttime Salve"
                         },
                         new
                         {
@@ -130,8 +122,7 @@ namespace EarthlyRemedies.Migrations
                             Category = "eyes",
                             Details = "If something is in your eye, pull your upper eyelid over your lower one, in an attempt to scrape out the obstruction",
                             Ingredients = "",
-                            Name = "Eye obsruction removal",
-                            UserId = 1
+                            Name = "Eye obsruction removal"
                         });
                 });
 #pragma warning restore 612, 618

@@ -18,11 +18,11 @@ namespace EarthlyRemedies.Controllers
     }
 
     // GET api/Remedies
-    [HttpGet]
-    public ActionResult<IEnumerable<Remedy>> Get()
-    {
-      return _db.Remedies.ToList();
-    }
+    // [HttpGet]
+    // public ActionResult<IEnumerable<Remedy>> Get()
+    // {
+    //   return _db.Remedies.ToList();
+    // }
 
     // POST api/Remedies
     [HttpPost]
@@ -54,6 +54,45 @@ namespace EarthlyRemedies.Controllers
       var remedyToDelete = _db.Remedies.FirstOrDefault(entry => entry.RemedyId == id);
       _db.Remedies.Remove(remedyToDelete);
       _db.SaveChanges();
+    }
+
+    // GET api/Remedies
+    [HttpGet]
+    public ActionResult<IEnumerable<Remedy>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
+    {
+      var query = _db.Remedies.AsQueryable();
+
+      if (name != null)
+      {
+        query = query.Where(entry => entry.Name == name);
+      }
+
+      if (details != null)
+      {
+        query = query.Where(entry => entry.Details.Contains(details));
+      }
+
+      if (details != null)
+      {
+        query = query.Where(entry => entry.Ingredients.Contains(ingredients));
+      }
+
+      if (ailment != null)
+      {
+        query = query.Where(entry => entry.Ailment == ailment);
+      }
+
+      if (category != null)
+      {
+        query = query.Where(entry => entry.Category == category);
+      }
+
+      if (userId != 0)
+      {
+        query = query.Where(entry => entry.UserId == userId);
+      }
+
+      return query.ToList();
     }
   }
 }
