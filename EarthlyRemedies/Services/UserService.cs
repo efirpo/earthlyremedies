@@ -27,8 +27,6 @@ namespace EarthlyRemedies.Services
 
     private EarthlyRemediesContext _users;
 
-
-
     private readonly AppSettings _appSettings;
 
     public UserService(IOptions<AppSettings> appSettings, EarthlyRemediesContext db)
@@ -39,30 +37,36 @@ namespace EarthlyRemedies.Services
 
     public User Authenticate(string username, string password)
     {
-      var user = _users.Users.SingleOrDefault(x => x.Username == username && x.Password == password);
 
+      Console.WriteLine($"%%%+%+! {username}");
+      var user = _users.Users.SingleOrDefault(x => x.Username == username && x.Password == password);
+      Console.WriteLine($"%%%+%+! {user.Username} {user.Password}");
       // return null if user not found
       if (user == null)
+      {
         return null;
+      }
 
       // authentication successful so generate jwt token
       var tokenHandler = new JwtSecurityTokenHandler();
       var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
       var tokenDescriptor = new SecurityTokenDescriptor
       {
         Subject = new ClaimsIdentity(new Claim[]
           {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+            new Claim(ClaimTypes.Name, user.Id.ToString())
           }),
         Expires = DateTime.UtcNow.AddDays(7),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
+      Console.WriteLine($"|||||||||||| tokenDescriptor: {tokenDescriptor}");
       var token = tokenHandler.CreateToken(tokenDescriptor);
+      Console.WriteLine($"===={key[0]}");
       user.Token = tokenHandler.WriteToken(token);
 
       // remove password before returning
       user.Password = null;
-
       return user;
     }
 
@@ -79,3 +83,5 @@ namespace EarthlyRemedies.Services
     }
   }
 }
+
+

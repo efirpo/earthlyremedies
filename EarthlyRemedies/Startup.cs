@@ -110,6 +110,7 @@ namespace EarthlyRemedies
       app.UseAuthentication();
 
       app.UseMvc();
+
     }
   }
 }
