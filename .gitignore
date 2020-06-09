@@ -1,5 +1,9 @@
 bin/
 obj
+<<<<<<< HEAD
 
+=======
+# appsettings.json
+>>>>>>> fd5da88095876f4c6f305548cd0ac07766e42283
 .vscode
 valuescontroller.cs

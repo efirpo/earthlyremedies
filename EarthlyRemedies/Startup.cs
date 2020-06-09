@@ -10,6 +10,10 @@ using EarthlyRemedies.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using EarthlyRemedies.Models;
+using Microsoft.OpenApi.Models;
+using System;
+using System.Reflection;
+using System.IO;
 
 // namespace EarthlyRemedies
 // {
@@ -69,6 +73,20 @@ namespace EarthlyRemedies
       services.AddDbContext<EarthlyRemediesContext>(opt =>
       opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
+      services.AddSwaggerGen(c =>
+      {
+        c.SwaggerDoc("v1", new OpenApiInfo
+        {
+          Title = "Earthly Remedies",
+          Version = "v1",
+          Description = "A database of user-posted natural and home remedies",
+          Contact = new OpenApiContact
+          {
+            Name = "Julia, DJ & Jason",
+          }
+        });
+      });
+
       // configure strongly typed settings objects
       var appSettingsSection = Configuration.GetSection("AppSettings");
       services.Configure<AppSettings>(appSettingsSection);
@@ -108,6 +126,14 @@ namespace EarthlyRemedies
           .AllowAnyHeader());
 
       app.UseAuthentication();
+
+      app.UseSwagger();
+
+      app.UseSwaggerUI(c =>
+      {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Earthly Remedies V1");
+        c.RoutePrefix = string.Empty;
+      });
 
       app.UseMvc();
 
