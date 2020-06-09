@@ -3,6 +3,7 @@
 #### _Epicodus Project June 8, 2020_
 
 #### By _**Julia Seidman & DJ Zevenbergen**_
+#### Additional work from on June 9, 2020 _**Jason Macie**_
 
 
 ## Description
@@ -56,6 +57,7 @@ _Have a bug or an issue with this application? [Open a new issue] here on GitHub
 * As a user, I want to be able to post ratings for remedies.  
 * As a user, I want to see the best Remedies by rating. 
 * As a user, I want error messages to tell me what I did wrong.
+
 * On get request, return dictionary with key value pairs of {{"categories", List<strings>{"skin","GI","eyes","whatever"}}, {"response", List<Remedy>{}}
 * could use another model to store categories variable
 

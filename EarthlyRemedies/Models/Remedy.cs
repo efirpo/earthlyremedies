@@ -19,9 +19,7 @@ namespace EarthlyRemedies.Models
     [Required]
     public string Category { get; set; }
     public string Ingredients { get; set; }
-
     public int UserId { get; set; }
-
 
   }
 
