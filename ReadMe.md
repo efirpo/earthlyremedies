@@ -49,16 +49,17 @@ _Have a bug or an issue with this application? [Open a new issue] here on GitHub
 
 ### User Story
 
-* As a user, I want to be able GET remedies related to a specific ailment
+* As a user, I want to be able GET remedies related to a specific ailment.
 * As a user, I want to be able to POST natural remedies for a specific ailment.
 * As a user, I want to see a list of all ailments.
 * As a user, I want to be able to PUT and DELETE remedies that I have created.
 * As a user, I want to be able to look up remedies by name, details, ailment and biological system/category.
 * As a user, I want to be able to tag remedies with specific ingredients.
 * As a user, I want to see all uses for a particular ingredient.
-* As a user, I want to be able to post ratings for remedies.  
-* As a user, I want to see the best Remedies by rating. 
+* As a user, I want to be able to post ratings for remedies.
+* As a user, I want to see the best Remedies by rating.
 * As a user, I want error messages to tell me what I did wrong.
+* As a user, I want to be able to create a user profile and log in so that I can rate, add, edit, and delete my remedies.
 
 * On get request, return dictionary with key value pairs of ```{{"categories", List<strings>{"skin","GI","eyes","whatever"}}, {"response", List<Remedy>{}}```
 
