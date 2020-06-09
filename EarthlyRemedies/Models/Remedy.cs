@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace EarthlyRemedies.Models
 {
-  public class Remedy
+  public class Remedy : IValidatableObject
   {
 
     public int RemedyId { get; set; }
@@ -21,6 +21,15 @@ namespace EarthlyRemedies.Models
     public string Ingredients { get; set; }
     public int UserId { get; set; }
 
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+      if (!EnvironmentVariables.Categories.Contains(Category))
+      {
+        yield return new ValidationResult(
+            $"Category is not contained in Categories",
+            new[] { "Category" });
+      }
+    }
   }
 
 }

@@ -82,7 +82,7 @@ namespace EarthlyRemedies.Controllers
         query = query.Where(entry => entry.Details.Contains(details));
       }
 
-      if (details != null)
+      if (ingredients != null)
       {
         query = query.Where(entry => entry.Ingredients.Contains(ingredients));
       }
