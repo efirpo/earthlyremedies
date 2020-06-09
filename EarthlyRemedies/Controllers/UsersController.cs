@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using EarthlyRemedies.Services;
 using EarthlyRemedies.Models;
+using System;
 
 namespace EarthlyRemedies.Controllers
 {
@@ -24,6 +25,7 @@ namespace EarthlyRemedies.Controllers
     [HttpPost("authenticate")]
     public IActionResult Authenticate([FromBody] User userParam)
     {
+      Console.WriteLine($"Console Attempt: {userParam.Username}, {userParam.Password}");
       var user = _userService.Authenticate(userParam.Username, userParam.Password);
 
       if (user == null)
