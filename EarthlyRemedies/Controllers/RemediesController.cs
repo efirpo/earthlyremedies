@@ -34,15 +34,17 @@ namespace EarthlyRemedies.Controllers
       _db.SaveChanges();
     }
 
-    // GET api/remedies/#
     [HttpGet("{id}")]
+
     public ActionResult<Remedy> Get(int id)
     {
-      return _db.Remedies.FirstOrDefault(entry => entry.RemedyId == id);
+      var thisRemedy = _db.Remedies.FirstOrDefault(remedy => remedy.RemedyId == id);
+      return thisRemedy;
     }
 
+
     //PUT api/remedies/userId/remedyId
-    [HttpPut("{userId}/{id}")]
+    [HttpPut("{id}")]
     public void Put(int userId, int id, [FromBody] Remedy remedy)
     {
       remedy.RemedyId = id;
@@ -54,23 +56,30 @@ namespace EarthlyRemedies.Controllers
     }
 
     //http://localhost:5000/api/remedies/1/9
-    [HttpDelete("{userId}/{id}")]
+    [HttpDelete("{id}")]
     public void Delete(int id, int userId)
     {
       var remedyToDelete = _db.Remedies.FirstOrDefault(entry => entry.RemedyId == id);
-      if (remedyToDelete.UserId == userId)
-      {
-        _db.Remedies.Remove(remedyToDelete);
-        _db.SaveChanges();
-      }
+      _db.Remedies.Remove(remedyToDelete);
+      _db.SaveChanges();
     }
 
-    // GET api/Remedies
     [HttpGet]
-    // public ActionResult<IEnumerable<Remedy>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
+    //Search GET
     public ActionResult<IEnumerable<Remedy>> Get(string name, string details, string ailment, string ingredients, int userId)
     {
-      var query = _db.Remedies.AsQueryable();
+
+      var query = _db.Remedies
+      .Include(remedy => remedy.Categories)
+      .ThenInclude(join => join.Category)
+      .AsQueryable();
+      foreach (Remedy remedy in query)
+      {
+        foreach (var join in remedy.Categories)
+        {
+          Console.WriteLine("\n\n\n\n\n\n" + join.Category.Name + "\n\n\n\n\n");
+        };
+      };
 
       if (name != null)
       {
@@ -101,7 +110,6 @@ namespace EarthlyRemedies.Controllers
       {
         query = query.Where(entry => entry.UserId == userId);
       }
-
       return query.ToList();
     }
   }
