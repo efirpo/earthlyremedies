@@ -3,9 +3,16 @@ using System.Collections.Generic;
 
 namespace EarthlyRemedies.Models
 {
-  public static class EnvironmentVariables
+  public class Category
   {
-    public static List<string> Categories = new List<string> { "GI", "respiratory", "skin", "eyes", "hair", "musculoskeletal", "endocrine", "chakra", "pineal", "lymphatic", "cardiovascular", "digestive", "nervous", "reproductive" };
+    public Category()
+    {
+      this.Remedies = new HashSet<CategoryRemedy>();
+    }
+
+    public int CategoryId { get; set; }
+    public string Name { get; set; }
+    public virtual ICollection<CategoryRemedy> Remedies { get; set; }
 
   }
 }

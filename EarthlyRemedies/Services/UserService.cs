@@ -38,9 +38,9 @@ namespace EarthlyRemedies.Services
     public User Authenticate(string username, string password)
     {
 
-      Console.WriteLine($"%%%+%+! {username}");
+      // Console.WriteLine($"%%%+%+! {username}");
       var user = _users.Users.SingleOrDefault(x => x.Username == username && x.Password == password);
-      Console.WriteLine($"%%%+%+! {user.Username} {user.Password}");
+      // Console.WriteLine($"%%%+%+! {user.Username} {user.Password}");
       // return null if user not found
       if (user == null)
       {
@@ -60,9 +60,9 @@ namespace EarthlyRemedies.Services
         Expires = DateTime.UtcNow.AddDays(7),
         SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
       };
-      Console.WriteLine($"|||||||||||| tokenDescriptor: {tokenDescriptor}");
+      // Console.WriteLine($"|||||||||||| tokenDescriptor: {tokenDescriptor}");
       var token = tokenHandler.CreateToken(tokenDescriptor);
-      Console.WriteLine($"===={key[0]}");
+      // Console.WriteLine($"===={key[0]}");
       user.Token = tokenHandler.WriteToken(token);
 
       // remove password before returning

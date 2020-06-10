@@ -4,9 +4,12 @@ using System.Linq;
 
 namespace EarthlyRemedies.Models
 {
-  public class Remedy : IValidatableObject
+  public class Remedy
   {
-
+    public Remedy()
+    {
+      this.Categories = new HashSet<CategoryRemedy>();
+    }
     public int RemedyId { get; set; }
     [Required]
     [StringLength(50)]
@@ -16,20 +19,9 @@ namespace EarthlyRemedies.Models
 
     [StringLength(30)]
     public string Ailment { get; set; }
-    [Required]
-    public string Category { get; set; }
     public string Ingredients { get; set; }
+    public virtual ICollection<CategoryRemedy> Categories { get; set; }
     public int UserId { get; set; }
 
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-      if (!EnvironmentVariables.Categories.Contains(Category))
-      {
-        yield return new ValidationResult(
-            $"Category is not contained in Categories",
-            new[] { "Category" });
-      }
-    }
   }
-
 }
